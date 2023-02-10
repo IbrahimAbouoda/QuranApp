@@ -21,9 +21,6 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  void justForFun(){
-    print(" Hello World");
-  }
 
   @override
   Widget build(BuildContext context) {
