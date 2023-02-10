@@ -163,12 +163,8 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                 child: PageView.builder(
                   onPageChanged: (value) {
                     setState(() {
-                      if (pageNo == value) {
-                        allPages[pageNo + 1].clear();
-                      } else {
-                        allPages[pageNo - 1].clear();
-                      }
-                      pageNo = value + 1;
+                      allPages[pageNo].clear();
+                      pageNo = value;
                       loadData();
                       myTextSpans = <TextSpan>[];
                     });
@@ -204,16 +200,15 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    setState(() {
+                    setState(() async {
                       if (pageNo < 614) {
                         _controller.animateToPage(
                           pageNo + 1,
                           duration: Duration(seconds: 1),
-                          curve: Curves.easeInBack,
+                          curve: Curves.linear,
                         );
-                        ++pageNo;
                         myTextSpans = <TextSpan>[];
-                        allPages[pageNo - 1].clear();
+                        allPages[pageNo].clear();
                         loadData();
                       }
                     });
@@ -252,7 +247,6 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                                         allPages[pageNo].clear();
                                         search(text: _controllerAya.value.text);
                                         _controllerAya.clear();
-
                                       });
                                     },
                                     child: Text("بدأ البحث"),
@@ -267,14 +261,14 @@ class _SecondHomeScreenState extends State<SecondHomeScreen> {
                 Spacer(),
                 TextButton(
                   onPressed: () {
-                    setState(() {
+                    setState(() async {
                       if (pageNo > 1) {
-                        _controller.animateToPage(
+                        await _controller.animateToPage(
                           pageNo - 1,
                           duration: Duration(seconds: 1),
-                          curve: Curves.easeInBack,
+                          curve: Curves.linear,
                         );
-                        --pageNo;
+                        // --pageNo;
                         allPages[pageNo + 1].clear();
                         loadData();
                       }
