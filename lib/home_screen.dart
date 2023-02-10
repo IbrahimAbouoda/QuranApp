@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int index = 1;
 
   late List allData;
-
   late PageController _controller;
   List<String> ayatOfPage = [];
   List<String> allSourahs = List.filled(604, '');
